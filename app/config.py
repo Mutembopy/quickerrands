@@ -6,6 +6,13 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///quickerrands.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret")
+    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "jwt-secret")
+
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+        "DATABASE_URL",
+        "sqlite:///test.db"  # fallback (for testing only)
+
     JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') or 'jwt-secret-key-change-in-production'
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
